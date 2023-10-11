@@ -106,7 +106,9 @@ class S2DNet(BaseModel):
         num_layers = self.hypercolumn_indices[-1] + 1
 
         # Initialize architecture
-        vgg16 = models.vgg16(pretrained=conf.pretrained == 'imagenet')
+        # vgg16 = models.vgg16(pretrained=conf.pretrained == 'imagenet')
+        vgg16 = models.vgg16(pretrained = False)
+        vgg16.load_state_dict(torch.load('/ws/external/pretrained/vgg16-397923af.pth'))
         layers = list(vgg16.features.children())[:num_layers]
         self.encoder = nn.ModuleList(layers)
 

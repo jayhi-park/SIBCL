@@ -20,7 +20,7 @@ import random
 import cv2
 from pixloc.pixlib.geometry import Camera, Pose
 
-root_dir = "/data/dataset/Kitti" # your kitti dir
+root_dir = "/ws/data/kitti-vo" # your kitti dir
 satmap_zoom = 18 
 satmap_dir = 'satmap_'+str(satmap_zoom)
 grdimage_dir = 'raw_data'

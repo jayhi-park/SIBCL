@@ -305,6 +305,8 @@ def training(rank, conf, output_dir, args):
 
         for it, data in enumerate(train_loader):
             tot_it = len(train_loader)*epoch + it
+            if it % 10 == 0:
+                print(f"epoch {epoch} training {it} / {len(train_loader)}")
 
             model.train()
             optimizer.zero_grad()
@@ -419,7 +421,7 @@ if __name__ == '__main__':
     parser.add_argument('--experiment', type=str, default='kitti')
     parser.add_argument('--conf', type=str)
     parser.add_argument('--overfit', action='store_true', default=False)
-    parser.add_argument('--restore', action='store_true', default=True)
+    parser.add_argument('--restore', action='store_true', default=False)
     parser.add_argument('--distributed', action='store_true',default=False)
     parser.add_argument('--dotlist', nargs='*', default=["data.name=kitti","data.max_num_points3D=4096","data.force_num_points3D=True",
                                                          "data.num_workers=0","data.train_batch_size=1","data.test_batch_size=1",

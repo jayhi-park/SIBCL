@@ -71,7 +71,9 @@ class UNet(BaseModel):
     def build_encoder(self, conf):
         assert isinstance(conf.encoder, str)
         Encoder = getattr(torchvision.models, conf.encoder)
-        encoder = Encoder(pretrained=True)
+        encoder = Encoder(pretrained=False)
+        encoder.load_state_dict(torch.load('/ws/external/pretrained/vgg16-397923af.pth'))
+
         Block = checkpointed(torch.nn.Sequential, do=conf.checkpointed)
 
         if conf.encoder.startswith('vgg'):

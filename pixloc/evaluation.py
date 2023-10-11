@@ -272,6 +272,6 @@ if __name__ == '__main__':
 
     if 1: # test
         test(refiner, test_loader) #val_loader
-    if 0: # visualization 
+    if 0: # visualization
         Val(refiner, val_loader, save_path, 0)
 
